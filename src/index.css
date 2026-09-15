@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* @font-face 규칙은 `npm run fonts:subset`이 생성합니다. */
+@import "./fonts.css";
+
+@theme {
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-a2z: "A2z", var(--font-sans);
+  --font-vibe: "NostalgicPoliceVibe", var(--font-sans);
+
+  --color-cream: #fff6e8;
+  --color-cream-light: #fffbf2;
+  --color-cream-soft: #fff9ef;
+
+  --color-orange: #c2410c;
+  --color-orange-dark: #9a3208;
+  --color-orange-pale: #fdf0e1;
+
+  --color-teal: #0f766e;
+  --color-teal-light: #3e7a70;
+  --color-teal-pale: #d6f1eb;
+  --color-teal-deep: #0b5c52;
+
+  --color-ink: #2b2118;
+  --color-ink-soft: #3b2e20;
+  --color-ink-softer: #4a3c2c;
+
+  /* 본문 갈색은 두 단계뿐입니다. 더 연한 단계는 흰색·크림 배경에서
+     명도대비 4.5:1을 넘지 못해 정리했습니다. */
+  --color-brown: #6b5a46;
+  --color-brown-light: #7a6a54;
+
+  --color-line: #eae1d0;
+  --color-line-2: #efe6d6;
+  --color-line-3: #efe1c8;
+  --color-line-4: #e7dcc5;
+  --color-line-5: #efe0c8;
+
+  --color-yellow-pale: #ffe8a3;
+  --color-yellow-light: #fff3c4;
+  --color-yellow-soft: #fbe4be;
+  --color-yellow-softer: #fdf1de;
+
+  --color-amber: #a16207;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* sticky 헤더(70px + 경계선) 아래로 섹션이 들어가지 않도록 여백을 둡니다. */
+    scroll-padding-top: 84px;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  a {
+    color: var(--color-orange);
+    text-decoration: none;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+
+  /* 주황·틸 배경 위에서도 보이도록 포커스 링을 직접 지정합니다. */
+  :focus-visible {
+    outline: 3px solid var(--color-teal-deep);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .bg-teal :focus-visible,
+  .bg-orange :focus-visible {
+    outline-color: #fff;
+  }
+}
+
+.placeholder-hatch {
+  background-image: repeating-linear-gradient(135deg,
+      var(--color-yellow-softer) 0 10px,
+      var(--color-yellow-soft) 10px 20px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

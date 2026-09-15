@@ -29,3 +29,6 @@ dist-ssr
 
 # Image originals (large, not needed to build)
 assets-source
+
+.vercel
+.env*

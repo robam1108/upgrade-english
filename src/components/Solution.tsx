@@ -13,23 +13,23 @@ export default function Solution() {
   return (
     <section id="about" aria-labelledby="solution-heading" className="bg-teal text-white">
       <div className="mx-auto max-w-[1200px] px-5 py-10 sm:py-16 lg:py-24">
-        <Reveal className="grid grid-cols-1 items-end gap-6 sm:grid-cols-2 lg:gap-16">
+        <Reveal className="grid grid-cols-1 gap-6">
           <div>
             <div className="text-[13px] font-extrabold tracking-[0.1em] text-yellow-pale">SOLUTION</div>
             <h2
               id="solution-heading"
-              className="mt-3.5 font-a2z text-[26px] font-extrabold leading-[1.35] -tracking-[0.025em] text-white text-balance sm:text-3xl lg:text-[38px]"
+              className="mt-3.5 font-a2z text-[26px] font-extrabold leading-[1.35] tracking-normal text-white text-balance sm:text-3xl lg:text-[38px]"
             >
               UPGRADE는 공부의 양보다
-              <br />
+              <br className="hidden sm:block" />
               공부의 방향을 관리합니다.
             </h2>
+            <p className="mt-4 max-w-[420px] text-base leading-[1.8] text-teal-pale text-balance">
+              학생마다 막히는 지점이 다릅니다. 진단으로 시작해
+              <br />
+              주간 리포트로 확인하는 4단계 관리 구조를 운영합니다.
+            </p>
           </div>
-          <p className="max-w-[420px] text-base leading-[1.8] text-teal-pale text-balance">
-            학생마다 막히는 지점이 다릅니다. 진단으로 시작해
-            <br />
-            주간 리포트로 확인하는 4단계 관리 구조를 운영합니다.
-          </p>
         </Reveal>
         <Reveal delay={0.1} className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
           {SOLUTIONS.map((s, i) => {

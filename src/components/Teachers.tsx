@@ -10,7 +10,7 @@ export default function Teachers() {
           <div className="text-[13px] font-extrabold tracking-[0.1em] text-orange">TEACHERS</div>
           <h2
             id="teachers-heading"
-            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] -tracking-[0.025em] text-teal sm:text-3xl lg:text-[38px]"
+            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] tracking-normal text-teal sm:text-3xl lg:text-[38px]"
           >
             담당 강사진
           </h2>

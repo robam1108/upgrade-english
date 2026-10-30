@@ -9,7 +9,7 @@ export default function Spaces() {
           <div className="text-[13px] font-extrabold tracking-[0.1em] text-orange">ACADEMY</div>
           <h2
             id="spaces-heading"
-            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] -tracking-[0.025em] text-teal sm:text-3xl lg:text-[38px]"
+            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] tracking-normal text-teal sm:text-3xl lg:text-[38px]"
           >
             학습에 집중할 수 있는 공간
           </h2>

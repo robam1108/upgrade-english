@@ -8,7 +8,7 @@ export default function CtaBanner() {
         <Reveal>
           <h2
             id="cta-heading"
-            className="font-a2z text-[26px] font-extrabold leading-[1.35] -tracking-[0.025em] text-white text-balance sm:text-3xl lg:text-[40px]"
+            className="font-a2z text-[26px] font-extrabold leading-[1.35] tracking-normal text-white text-balance sm:text-3xl lg:text-[40px]"
           >
             우리 아이에게 맞는
             <br />

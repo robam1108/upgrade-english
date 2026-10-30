@@ -27,7 +27,7 @@ export default function Curriculum() {
           <div className="text-[13px] font-extrabold tracking-[0.1em] text-orange">CURRICULUM</div>
           <h2
             id="curriculum-heading"
-            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] -tracking-[0.025em] text-teal sm:text-3xl lg:text-[38px]"
+            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] tracking-normal text-teal sm:text-3xl lg:text-[38px]"
           >
             학년별 커리큘럼
           </h2>
@@ -84,7 +84,7 @@ export default function Curriculum() {
                   active ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                 }`}
               >
-                <div className="flex flex-wrap items-baseline gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <h3 className="text-xl font-extrabold -tracking-[0.02em] text-teal sm:text-2xl lg:text-[26px]">
                     {c.heading}
                   </h3>

@@ -33,7 +33,7 @@ export default function ConsultForm() {
           <div className="text-[13px] font-extrabold tracking-[0.1em] text-orange">CONSULTATION</div>
           <h2
             id="form-heading"
-            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] -tracking-[0.025em] text-teal sm:text-[34px]"
+            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] tracking-normal text-teal sm:text-[34px]"
           >
             상담 신청
           </h2>

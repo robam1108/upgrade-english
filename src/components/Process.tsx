@@ -20,7 +20,7 @@ export default function Process() {
           <div className="text-[13px] font-extrabold tracking-[0.1em] text-orange">LEARNING PROCESS</div>
           <h2
             id="process-heading"
-            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] -tracking-[0.025em] text-teal text-balance sm:text-3xl lg:text-[38px]"
+            className="mt-3.5 font-a2z text-[26px] font-bold leading-[1.35] tracking-normal text-teal text-balance sm:text-3xl lg:text-[38px]"
           >
             등록 후 이렇게 관리됩니다
           </h2>

@@ -57,6 +57,64 @@ for (const [from, to, width, ratio] of TARGETS) {
   console.log(`  ✓ ${to.padEnd(32)} ${String(width).padStart(4)}px ${kb(buf.length).padStart(9)}`)
 }
 
+/**
+ * 투명 배경처럼 보이는 체크무늬가 픽셀로 박혀 있는 일러스트에서 배경을 걷어낸다.
+ * 가장자리에서부터 무채색·밝은 픽셀만 따라 채워 나가므로, 인물 안쪽의 흰색은 남는다.
+ */
+async function cutout(file) {
+  const { data, info } = await sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true })
+  const { width: w, height: h } = info
+  const isBg = (p) => {
+    const r = data[p * 3], g = data[p * 3 + 1], b = data[p * 3 + 2]
+    return Math.min(r, g, b) >= 215 && Math.max(r, g, b) - Math.min(r, g, b) <= 12
+  }
+
+  const bg = new Uint8Array(w * h)
+  const stack = []
+  for (let x = 0; x < w; x++) stack.push(x, (h - 1) * w + x)
+  for (let y = 0; y < h; y++) stack.push(y * w, y * w + w - 1)
+  while (stack.length) {
+    const p = stack.pop()
+    if (bg[p] || !isBg(p)) continue
+    bg[p] = 1
+    const x = p % w
+    if (x > 0) stack.push(p - 1)
+    if (x < w - 1) stack.push(p + 1)
+    if (p >= w) stack.push(p - w)
+    if (p < w * (h - 1)) stack.push(p + w)
+  }
+
+  // 경계가 계단처럼 보이지 않도록 알파를 살짝 흐린다. 배경 쪽은 완전히 투명하게 둔다.
+  const hard = Buffer.from(bg.map((v) => (v ? 0 : 255)))
+  const soft = await sharp(hard, { raw: { width: w, height: h, channels: 1 } })
+    .blur(0.8)
+    .extractChannel(0)
+    .raw()
+    .toBuffer()
+
+  const rgba = Buffer.alloc(w * h * 4)
+  for (let p = 0; p < w * h; p++) {
+    rgba.set(data.subarray(p * 3, p * 3 + 3), p * 4)
+    rgba[p * 4 + 3] = bg[p] ? 0 : soft[p]
+  }
+  const png = await sharp(rgba, { raw: { width: w, height: h, channels: 4 } }).png().toBuffer()
+  return sharp(png).trim({ threshold: 1 }).png().toBuffer()
+}
+
+// PAIN POINT 하단 일러스트는 최대 250px 안팎이라 2배인 500px 하나만 만든다.
+{
+  const to = 'painpoints/worried-parent.webp'
+  const dest = path.join(OUT, to)
+  await mkdir(path.dirname(dest), { recursive: true })
+  const buf = await sharp(await cutout(path.join(SRC, 'pain_point/물음표와 함께 고민하는 소녀.png')))
+    .resize(500)
+    .webp({ quality: 82, alphaQuality: 90 })
+    .toBuffer()
+  await writeFile(dest, buf)
+  total += buf.length
+  console.log(`  ✓ ${to.padEnd(32)} ${String(500).padStart(4)}px ${kb(buf.length).padStart(9)}`)
+}
+
 // 카카오톡·슬랙 등의 링크 미리보기용. 1200x630은 대부분의 플랫폼이 쓰는 비율이다.
 const og = await sharp(path.join(SRC, 'hero/hero.png'))
   .resize(1200, 630, { fit: 'cover', position: 'attention' })

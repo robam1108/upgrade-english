@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container-x grid grid-cols-1 gap-12 pb-10 pt-16 lg:grid-cols-12 lg:gap-14 lg:pt-24">
         <div className="lg:col-span-5">
           <Wordmark tone="light" />
-          <p className="m-0 mt-6 max-w-[22em] font-en text-[28px] font-bold leading-[1.2] tracking-[-0.03em] text-sky-soft">
+          <p className="m-0 mt-6 max-w-[22em] font-display text-[28px] font-bold leading-[1.3] tracking-normal text-sky-soft">
             Learn today,
             <br />
             <span className="text-butter">lead tomorrow.</span>

@@ -217,8 +217,8 @@ export default function ContactSection() {
       <div className="container-x relative">
         <SectionMark index="07" label="Contact" tone="navy" />
 
-        <div className="mt-10 grid grid-cols-1 gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-5">
+        <div className="mt-10 grid grid-cols-1 gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+          <div className="lg:col-span-6 xl:col-span-5">
             <Reveal>
               <h2 id="contact-heading" className="t-h2 text-navy">
                 우리 아이의 영어 성장,
@@ -274,7 +274,7 @@ export default function ContactSection() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.1} className="lg:col-span-7">
+          <Reveal delay={0.1} className="lg:col-span-6 xl:col-span-7">
             <div className="rounded-[28px] bg-ivory p-6 shadow-[0_30px_60px_-30px_rgba(38,59,80,0.35)] sm:p-10">
               <p className="t-eyebrow m-0 text-sky-deep">Consultation Form</p>
               <p className="m-0 mb-7 mt-3 t-small text-ink-soft">

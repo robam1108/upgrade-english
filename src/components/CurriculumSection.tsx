@@ -1,9 +1,18 @@
+import { useState } from 'react'
 import { ArrowRight, Check, Clock } from 'lucide-react'
 import Reveal from './Reveal'
 import SectionMark from './ui/SectionMark'
 import { ELEMENTARY, MIDDLE } from '../data/content'
 
-const CARD_HOVER = 'transition-transform duration-300 ease-out hover:-translate-y-1'
+/**
+ * 데스크톱에서 두 카드는 48px 엇갈려 놓인다. 아래쪽 카드에 호버하면 그 카드가 위로,
+ * 다른 카드는 그만큼 아래로 내려가 자리를 맞바꾼다. 마우스를 떼도 마지막 상태를 유지한다.
+ */
+type Track = 'elementary' | 'middle'
+type CardProps = { raised: boolean; onRaise: () => void }
+
+const CARD_MOVE = 'motion-keep transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]'
+const cardOffset = (raised: boolean) => (raised ? 'lg:translate-y-0' : 'lg:translate-y-12')
 
 function CardLink({ tone }: { tone: 'sky' | 'navy' }) {
   const base =
@@ -18,11 +27,13 @@ function CardLink({ tone }: { tone: 'sky' | 'navy' }) {
 }
 
 /** 초등부: 곡선, 밝은 하늘색, 둥근 블록. */
-function ElementaryCard() {
+function ElementaryCard({ raised, onRaise }: CardProps) {
   return (
     <article
       aria-labelledby="elementary-heading"
-      className={`relative flex w-full flex-col overflow-hidden rounded-[var(--radius-card)] rounded-tl-[72px] bg-sky-soft p-7 sm:p-10 ${CARD_HOVER}`}
+      onMouseEnter={onRaise}
+      onFocus={onRaise}
+      className={`relative flex w-full flex-col overflow-hidden rounded-[var(--radius-card)] rounded-tl-[72px] bg-sky-soft p-7 sm:p-10 ${CARD_MOVE} ${cardOffset(raised)}`}
     >
       {/* 부드러운 곡선 그래픽. 카드 오른쪽 위를 감싸며 사진 자리를 만든다. */}
       <svg
@@ -54,7 +65,7 @@ function ElementaryCard() {
             {ELEMENTARY.grades}
           </span>
         </p>
-        <h3 id="elementary-heading" className="t-h2 mt-8 max-w-[11em] text-navy sm:mt-16">
+        <h3 id="elementary-heading" className="t-title mt-8 max-w-[12em] text-navy sm:mt-16">
           {ELEMENTARY.heading[0]}
           <br />
           {ELEMENTARY.heading[1]}
@@ -88,11 +99,13 @@ function ElementaryCard() {
 }
 
 /** 중등부: 직선, 네이비, 번호가 매겨진 표. */
-function MiddleCard() {
+function MiddleCard({ raised, onRaise }: CardProps) {
   return (
     <article
       aria-labelledby="middle-heading"
-      className={`relative flex w-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-navy p-7 text-ivory sm:p-10 ${CARD_HOVER}`}
+      onMouseEnter={onRaise}
+      onFocus={onRaise}
+      className={`relative flex w-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-navy p-7 text-ivory sm:p-10 ${CARD_MOVE} ${cardOffset(raised)}`}
     >
       {/* 모눈 그래픽. 구조적이고 정돈된 인상을 준다. */}
       <div
@@ -108,7 +121,7 @@ function MiddleCard() {
             {MIDDLE.grades}
           </span>
         </p>
-        <h3 id="middle-heading" className="t-h2 mt-8 max-w-[11em] text-ivory sm:mt-16">
+        <h3 id="middle-heading" className="t-title mt-8 max-w-[12em] text-ivory sm:mt-16">
           {MIDDLE.heading[0]}
           <br />
           <span className="text-butter">{MIDDLE.heading[1]}</span>
@@ -140,6 +153,8 @@ function MiddleCard() {
 }
 
 export default function CurriculumSection() {
+  const [raised, setRaised] = useState<Track>('elementary')
+
   return (
     <section id="curriculum" aria-labelledby="curriculum-heading" className="section-y bg-warm-gray/60">
       <div className="container-x">
@@ -169,12 +184,13 @@ export default function CurriculumSection() {
           </Reveal>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 lg:mt-16 lg:grid-cols-2 lg:gap-6">
+        {/* 카드는 transform으로 움직이므로, 내려간 카드가 차지할 48px를 pb-12로 미리 비워 둔다. */}
+        <div className="mt-12 grid grid-cols-1 gap-5 lg:mt-16 lg:grid-cols-2 lg:gap-6 lg:pb-12">
           <Reveal className="flex">
-            <ElementaryCard />
+            <ElementaryCard raised={raised === 'elementary'} onRaise={() => setRaised('elementary')} />
           </Reveal>
-          <Reveal delay={0.1} className="flex lg:mt-12">
-            <MiddleCard />
+          <Reveal delay={0.1} className="flex">
+            <MiddleCard raised={raised === 'middle'} onRaise={() => setRaised('middle')} />
           </Reveal>
         </div>
 

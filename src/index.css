@@ -6,6 +6,8 @@
 @theme {
   --font-sans: "SUIT Variable", SUIT, system-ui, -apple-system, sans-serif;
   --font-en: "DM Sans", var(--font-sans);
+  /* 제목 전용. 에이투지체는 Bold(700)만 받는다. */
+  --font-display: "A2z", var(--font-sans);
 
   /* 브랜드 팔레트. 면적 비율은 아이보리 60 / 하늘 25 / 버터 10 / 네이비 5 정도를 목표로 한다. */
   --color-ivory: #f7f8f3;
@@ -32,26 +34,49 @@
 }
 
 /* 타이포 위계. 섹션마다 임의 크기를 쓰지 않고 이 단계들을 쓴다.
-   display → h2 → h3 → lead → body → small(카드 설명) → eyebrow(영문 레이블) */
+   display → h2 → title(카드 안 큰 제목) → h3 → lead → body → small(카드 설명) → eyebrow(영문 레이블)
+   제목 단계는 에이투지체 Bold. 에이투지체에는 700과 800 사이 굵기가 없어서
+   display·h2·title은 Bold에 0.01em 외곽선을 더해 그 중간 굵기를 만든다. 외곽선이 획을 바깥으로
+   키우므로 자간은 좁히지 않는다.
+   에이투지체 한글은 같은 크기의 SUIT보다 폭이 7%, 높이가 11% 크다. 그래서 최대 크기를
+   SUIT 때보다 한 단계씩 낮춰 같은 면적을 차지하게 했다. */
 @utility t-display {
-  font-weight: 800;
-  font-size: clamp(2.375rem, 1.1rem + 4.4vw, 4.5rem);
-  line-height: 1.16;
-  letter-spacing: -0.04em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.375rem, 1.1rem + 4.1vw, 4.25rem);
+  line-height: 1.26;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0.01em currentColor;
+  paint-order: stroke fill;
 }
 
 @utility t-h2 {
-  font-weight: 800;
-  font-size: clamp(1.75rem, 1.15rem + 2.3vw, 2.875rem);
-  line-height: 1.3;
-  letter-spacing: -0.032em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.2rem + 1.9vw, 2.625rem);
+  line-height: 1.38;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0.01em currentColor;
+  paint-order: stroke fill;
+}
+
+/* 과정 카드처럼 섹션 제목 아래에서 다시 크게 쓰는 제목. h2와 같은 크기면 위계가 무너진다. */
+@utility t-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.625rem, 1.25rem + 1vw, 2.125rem);
+  line-height: 1.38;
+  letter-spacing: 0;
+  -webkit-text-stroke: 0.01em currentColor;
+  paint-order: stroke fill;
 }
 
 @utility t-h3 {
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
-  line-height: 1.42;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.4375rem);
+  line-height: 1.45;
+  letter-spacing: 0;
 }
 
 @utility t-lead {
@@ -163,5 +188,10 @@
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+  }
+
+  /* 호버로만 시작되는 느린 움직임(커리큘럼 카드 교차, 공간 사진 줌)은 예외로 원래 속도를 지킨다. */
+  .motion-keep {
+    transition-duration: var(--tw-duration) !important;
   }
 }

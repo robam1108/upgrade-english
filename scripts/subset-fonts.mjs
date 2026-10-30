@@ -15,6 +15,8 @@
  *                    상담 폼에 그런 글자를 입력할 때만 받는다.
  *    두 조각의 unicode-range는 서로 겹치지 않게 만든다.
  *  - DM Sans(영문 레이블·숫자)는 라틴 한 조각이면 된다.
+ *  - 에이투지체(제목)는 Bold 한 굵기를 페이지 글자로만 만든다.
+ *    제목은 정해진 문구라 나머지 조각이 필요 없다.
  */
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
@@ -36,6 +38,10 @@ const SOURCES = {
   dmSans: {
     url: 'https://cdn.jsdelivr.net/npm/@fontsource-variable/dm-sans@5.2.8/files/dm-sans-latin-wght-normal.woff2',
     cache: 'dm-sans-latin-wght-normal.woff2',
+  },
+  a2zBold: {
+    url: 'https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2',
+    cache: 'a2z-7Bold.woff2',
   },
 }
 
@@ -134,10 +140,13 @@ const latinChars = new Set([...ascii, ...punctuation])
 
 const suit = await download(SOURCES.suit)
 const dmSans = await download(SOURCES.dmSans)
-const totalBefore = suit.length + dmSans.length
+const a2zBold = await download(SOURCES.a2zBold)
+const totalBefore = suit.length + dmSans.length + a2zBold.length
 
 const firstLoad =
-  (await emit('suit-subset', suit, pageChars)) + (await emit('dm-sans-subset', dmSans, latinChars))
+  (await emit('suit-subset', suit, pageChars)) +
+  (await emit('dm-sans-subset', dmSans, latinChars)) +
+  (await emit('a2z-bold-subset', a2zBold, pageChars))
 
 await emit('suit-extra', suit, extraChars)
 
@@ -174,6 +183,16 @@ const css = [
   '  font-weight: 100 1000;',
   '  font-style: normal;',
   '  font-display: swap;',
+  '}',
+  '',
+  '/* 에이투지체 — noonnu.cc/font_page/1778, 상업적 이용/재배포 무료 */',
+  '@font-face {',
+  '  font-family: "A2z";',
+  '  src: url("./assets/fonts/a2z-bold-subset.woff2") format("woff2");',
+  '  font-weight: 700;',
+  '  font-style: normal;',
+  '  font-display: swap;',
+  `  unicode-range: ${toUnicodeRange(pageChars)};`,
   '}',
   '',
 ].join('\n')

@@ -37,7 +37,7 @@ export default function TeacherSection() {
               <figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-[18px] bg-ivory/95 px-5 py-4 backdrop-blur">
                 <span>
                   <span className="t-eyebrow block text-sky-deep">{LEAD_TEACHER.role}</span>
-                  <span className="mt-2 block text-[19px] font-extrabold text-navy">{LEAD_TEACHER.name}</span>
+                  <span className="mt-2 block font-display text-[22px] font-bold leading-[1.3] text-navy">{LEAD_TEACHER.name}</span>
                 </span>
                 <span className="font-en text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-mute">Lead</span>
               </figcaption>

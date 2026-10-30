@@ -30,9 +30,9 @@ function Tile({ space, frame, sizes, widths, className = '', delay = 0 }: TilePr
           width={widths[0]}
           height={widths[0]}
           loading="lazy"
-          className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="motion-keep size-full object-cover transition-transform duration-[1600ms] ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-[1.12]"
         />
-        <span className="t-eyebrow absolute left-4 top-4 rounded-full bg-navy/85 px-3 py-2 text-[10.5px] text-ivory backdrop-blur sm:text-[11px]">
+        <span className="t-eyebrow absolute left-4 top-4 rounded-full bg-navy/85 px-3 py-2 text-[11px] text-ivory backdrop-blur">
           {space.en}
         </span>
       </div>

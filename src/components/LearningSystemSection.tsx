@@ -94,7 +94,7 @@ export default function LearningSystemSection() {
                 <div className={`transition-opacity duration-500 lg:mt-8 ${on ? 'opacity-100' : 'opacity-55'}`}>
                   <p className="m-0 flex items-baseline gap-3">
                     <span className="font-en text-[13px] font-bold text-sky tnum">{step.no}</span>
-                    <span className="font-en text-[30px] font-bold leading-none tracking-[-0.03em] text-ivory lg:text-[40px]">
+                    <span className="font-en text-[30px] font-bold leading-none tracking-[-0.01em] text-ivory lg:text-[34px] xl:text-[40px]">
                       {step.en.toUpperCase()}
                     </span>
                   </p>

@@ -13,7 +13,7 @@ export default function StructuredData() {
       '@context': 'https://schema.org',
       '@type': 'EducationalOrganization',
       name: ACADEMY_NAME,
-      description: '초등 4학년부터 중학 3학년까지 내신을 관리하는 영어학원입니다.',
+      description: '초등 4학년부터 중학 3학년까지, 기초부터 내신까지 학생별로 관리하는 영어학원입니다.',
       telephone: PHONE,
       address: {
         '@type': 'PostalAddress',

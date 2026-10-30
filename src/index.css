@@ -4,66 +4,119 @@
 @import "./fonts.css";
 
 @theme {
-  --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
-  --font-a2z: "A2z", var(--font-sans);
-  --font-vibe: "NostalgicPoliceVibe", var(--font-sans);
+  --font-sans: "SUIT Variable", SUIT, system-ui, -apple-system, sans-serif;
+  --font-en: "DM Sans", var(--font-sans);
 
-  --color-cream: #fff6e8;
-  --color-cream-light: #fffbf2;
-  --color-cream-soft: #fff9ef;
+  /* 브랜드 팔레트. 면적 비율은 아이보리 60 / 하늘 25 / 버터 10 / 네이비 5 정도를 목표로 한다. */
+  --color-ivory: #f7f8f3;
+  --color-sky-soft: #dceffa;
+  --color-sky: #91c8e7;
+  --color-butter: #f5d77e;
+  --color-navy: #263b50;
+  --color-warm-gray: #e9e8e1;
 
-  --color-orange: #c2410c;
-  --color-orange-dark: #9a3208;
-  --color-orange-pale: #fdf0e1;
+  /* 파생 색. 텍스트로 쓰는 값은 아이보리 배경에서 명도대비 4.5:1 이상을 확인했다. */
+  --color-navy-deep: #1a2b3c;
+  --color-ink-soft: #4b5c6d; /* 보조 본문 6.3:1 */
+  --color-ink-mute: #566472; /* 캡션 5.6:1 (하늘·웜그레이 배경에서도 4.5:1 이상) */
+  --color-sky-deep: #2d6c93; /* 하늘색 계열 텍스트 5.3:1. Sky Blue 자체는 텍스트로 쓰지 않는다. */
+  --color-sky-mist: #eef7fc;
+  --color-butter-soft: #fcefc6;
+  --color-butter-deep: #e9c254;
+  --color-line: #dcdbd2;
 
-  --color-teal: #0f766e;
-  --color-teal-light: #3e7a70;
-  --color-teal-pale: #d6f1eb;
-  --color-teal-deep: #0b5c52;
+  --radius-card: 24px;
+  --radius-btn: 14px;
 
-  --color-ink: #2b2118;
-  --color-ink-soft: #3b2e20;
-  --color-ink-softer: #4a3c2c;
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 
-  /* 본문 갈색은 두 단계뿐입니다. 더 연한 단계는 흰색·크림 배경에서
-     명도대비 4.5:1을 넘지 못해 정리했습니다. */
-  --color-brown: #6b5a46;
-  --color-brown-light: #7a6a54;
+/* 타이포 위계. 섹션마다 임의 크기를 쓰지 않고 이 단계들을 쓴다.
+   display → h2 → h3 → lead → body → small(카드 설명) → eyebrow(영문 레이블) */
+@utility t-display {
+  font-weight: 800;
+  font-size: clamp(2.375rem, 1.1rem + 4.4vw, 4.5rem);
+  line-height: 1.16;
+  letter-spacing: -0.04em;
+}
 
-  --color-line: #eae1d0;
-  --color-line-2: #efe6d6;
-  --color-line-3: #efe1c8;
-  --color-line-4: #e7dcc5;
-  --color-line-5: #efe0c8;
+@utility t-h2 {
+  font-weight: 800;
+  font-size: clamp(1.75rem, 1.15rem + 2.3vw, 2.875rem);
+  line-height: 1.3;
+  letter-spacing: -0.032em;
+}
 
-  --color-yellow-pale: #ffe8a3;
-  --color-yellow-light: #fff3c4;
-  --color-yellow-soft: #fbe4be;
-  --color-yellow-softer: #fdf1de;
+@utility t-h3 {
+  font-weight: 700;
+  font-size: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
+  line-height: 1.42;
+  letter-spacing: -0.02em;
+}
 
-  --color-amber: #a16207;
+@utility t-lead {
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+}
+
+@utility t-body {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+@utility t-small {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+@utility t-eyebrow {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* 섹션 위아래 여백. 모바일 80px → 데스크톱 136px. */
+@utility section-y {
+  padding-block: clamp(5rem, 3.6rem + 5vw, 8.5rem);
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 768px) {
+    padding-inline: 32px;
+  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* sticky 헤더(70px + 경계선) 아래로 섹션이 들어가지 않도록 여백을 둡니다. */
-    scroll-padding-top: 84px;
+    /* sticky 헤더(72px) 아래로 섹션 제목이 들어가지 않도록 여백을 둡니다. */
+    scroll-padding-top: 72px;
   }
 
   body {
     margin: 0;
     overflow-x: hidden;
     font-family: var(--font-sans);
-    color: var(--color-ink);
-    background: #fff;
+    color: var(--color-navy);
+    background: var(--color-ivory);
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
     overflow-wrap: break-word;
   }
 
   a {
-    color: var(--color-orange);
+    color: inherit;
     text-decoration: none;
   }
 
@@ -74,27 +127,41 @@
     font-family: inherit;
   }
 
-  /* 주황·틸 배경 위에서도 보이도록 포커스 링을 직접 지정합니다. */
   :focus-visible {
-    outline: 3px solid var(--color-teal-deep);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
-  .bg-teal :focus-visible,
-  .bg-orange :focus-visible {
-    outline-color: #fff;
+  /* 네이비 배경 위에서는 버터 색 포커스 링이 보인다. */
+  .bg-navy :focus-visible,
+  .bg-navy-deep :focus-visible {
+    outline-color: var(--color-butter);
   }
 }
 
-.placeholder-hatch {
-  background-image: repeating-linear-gradient(135deg,
-      var(--color-yellow-softer) 0 10px,
-      var(--color-yellow-soft) 10px 20px);
+/* 히어로 제목의 형광펜 강조. 글자색은 네이비로 두고 하늘색은 밑줄 면으로만 써서 대비를 지킨다. */
+.marker {
+  background-image: linear-gradient(transparent 58%, var(--color-sky) 58%, var(--color-sky) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  padding-inline: 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* 영문 레이블 등 숫자 정렬이 필요한 곳. */
+.tnum {
+  font-variant-numeric: tabular-nums;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }

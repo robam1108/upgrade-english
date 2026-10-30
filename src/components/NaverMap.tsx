@@ -121,15 +121,15 @@ export default function NaverMap() {
         : ['지도를 불러오는 중입니다…', ADDRESS]
 
   return (
-    <figure className="relative m-0 aspect-[16/11] w-full overflow-hidden rounded-2xl border border-line-5">
+    <figure className="relative m-0 aspect-[16/11] w-full overflow-hidden rounded-[var(--radius-card)] border border-ivory/10">
       {/* 지도는 조작할 수 있는 위젯이라 이미지로 설명하지 않고, 주소를 글로 함께 둔다. */}
       <figcaption className="sr-only">
         {ACADEMY_NAME} 위치 지도. {ADDRESS}
       </figcaption>
       <div ref={containerRef} className="h-full w-full" />
       {status !== 'ready' && (
-        <div className="placeholder-hatch absolute inset-0 grid place-items-center">
-          <span className="px-4 text-center font-mono text-xs leading-[1.7] text-brown">
+        <div className="absolute inset-0 grid place-items-center bg-navy-deep">
+          <span className="px-4 text-center font-en text-xs leading-[1.7] text-sky-soft/80">
             {message[0]}
             <br />
             {message[1]}

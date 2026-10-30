@@ -1,5 +1,9 @@
-import teacher1 from '../assets/teachers/teacher1.webp'
-import teacher1x2 from '../assets/teachers/teacher1@2x.webp'
+import heroPortrait from '../assets/hero/hero-portrait.webp'
+import heroPortraitX2 from '../assets/hero/hero-portrait@2x.webp'
+import heroWide from '../assets/hero/hero-wide.webp'
+import heroWideX2 from '../assets/hero/hero-wide@2x.webp'
+import teacherLead from '../assets/teachers/lead.webp'
+import teacherLeadX2 from '../assets/teachers/lead@2x.webp'
 import teacher2 from '../assets/teachers/teacher2.webp'
 import teacher2x2 from '../assets/teachers/teacher2@2x.webp'
 import teacher3 from '../assets/teachers/teacher3.webp'
@@ -12,23 +16,15 @@ import spaceConsultRoom from '../assets/spaces/consult-room.webp'
 import spaceConsultRoomX2 from '../assets/spaces/consult-room@2x.webp'
 import spaceMaterials from '../assets/spaces/materials.webp'
 import spaceMaterialsX2 from '../assets/spaces/materials@2x.webp'
+import elementaryPhoto from '../assets/curriculum/elementary.webp'
+import elementaryPhotoX2 from '../assets/curriculum/elementary@2x.webp'
 
-export type NavLink = {
-  href: string
-  label: string
-  /** 좁은 화면 메뉴에만 넣는다. 데스크톱 헤더는 자리가 좁아 항목 수를 줄인다. */
-  mobileOnly?: true
-  /** 데스크톱 헤더에만 넣는다. 모바일은 하단 고정 바에 같은 동선이 있다. */
-  desktopOnly?: true
-}
-
-export const NAV_LINKS: NavLink[] = [
+export const NAV_LINKS = [
   { href: '#about', label: '학원 소개' },
-  { href: '#curriculum', label: '커리큘럼' },
-  { href: '#process', label: '수업 방식' },
-  { href: '#teachers', label: '강사진' },
-  { href: '#location', label: '오시는 길', mobileOnly: true },
-  { href: '#form', label: '상담 안내', desktopOnly: true },
+  { href: '#curriculum', label: '교육 과정' },
+  { href: '#system', label: '학습 시스템' },
+  { href: '#teacher', label: '강사진' },
+  { href: '#classroom', label: '학원 둘러보기' },
 ]
 
 export const ACADEMY_NAME = 'UPGRADE ENGLISH'
@@ -48,203 +44,172 @@ export const OPENING_HOURS = [
   { days: '일요일', hours: '휴무' },
 ]
 
-export const HERO_STRIP = [
-  {
-    no: '01',
-    title: '학생별 맞춤 학습',
-    desc: '진단 결과에 따라 교재와 진도를 조정합니다.',
-  },
-  {
-    no: '02',
-    title: '학교별 내신 분석',
-    desc: '학교 기출 유형과 서술형 출제 경향을 반영합니다.',
-  },
-  {
-    no: '03',
-    title: '주간 학습 관리',
-    desc: '오답과 과제 이행률을 매주 확인합니다.',
-  },
-]
-
-export const PAINS = [
-  {
-    no: '01',
-    title: '공부는 하는데 성적이 그대로예요',
-    desc: '학습량은 늘었지만 틀리는 유형이 매번 같은 경우입니다.',
-  },
-  {
-    no: '02',
-    title: '틀린 문제를 또 틀려요',
-    desc: '채점 후 오답을 다시 풀어보는 과정이 빠져 있습니다.',
-  },
-  {
-    no: '03',
-    title: '아이에게 맞는 방법을 모르겠어요',
-    desc: '어휘가 부족한 학생과 문법이 약한 학생의 처방은 다릅니다.',
-  },
-  {
-    no: '04',
-    title: '시험 직전에만 급하게 공부해요',
-    desc: '평소 관리가 없으면 시험 기간에 할 수 있는 일이 적어집니다.',
-  },
-]
-
-export const SOLUTIONS = [
-  {
-    no: '01',
-    title: '개인별 학습 진단',
-    desc: '어휘·문법·독해를 나눠 진단하고, 부족한 영역부터 순서를 정합니다.',
-  },
-  {
-    no: '02',
-    title: '학교별 내신 분석',
-    desc: '재학 중인 학교의 기출 유형과 서술형 비중을 반영해 대비합니다.',
-  },
-  {
-    no: '03',
-    title: '1:1 오답 관리',
-    desc: '틀린 문제는 다시 설명하고, 같은 유형을 풀어 확인까지 마칩니다.',
-  },
-  {
-    no: '04',
-    title: '주간 학습 리포트',
-    desc: '출결·과제·단어 시험·오답 현황을 매주 학부모님께 공유합니다.',
-  },
-]
-
-export type CurriculumBlock = { label: string; body: string }
-export type CurriculumEntry = {
-  key: string
-  heading: string
-  badge: string
-  summary: string
-  blocks: CurriculumBlock[]
+export const HERO_PHOTO = {
+  portrait: heroPortrait,
+  portrait2x: heroPortraitX2,
+  wide: heroWide,
+  wide2x: heroWideX2,
+  alt: '선생님이 화이트보드 앞에서 영어 표현을 설명하고, 학생들이 교재를 펴고 듣고 있는 수업 장면',
 }
 
-export const CURRICULUM: CurriculumEntry[] = [
-  {
-    key: '초등',
-    heading: '초등 고학년 과정',
-    badge: '초 4–6',
-    summary:
-      '중학 영어로 넘어갈 때 무너지지 않도록, 어휘와 문장 구조의 기초를 문법 용어와 함께 정리합니다.',
-    blocks: [
-      { label: '학습 목표', body: '중등 교과 진입에 필요한 어휘 1,800개\n문장 단위 해석 습관 형성' },
-      { label: '주요 학습 내용', body: '기초 문법 8품사 / 시제\n단락 독해 · 리딩 지문 요약' },
-      { label: '수업 방식', body: '주 2–3회 · 1회 90분\n문법 설명 후 즉시 적용 문제 풀이' },
-      { label: '관리 방법', body: '매 수업 단어 테스트\n미통과 시 재시험 후 귀가' },
-    ],
-  },
-  {
-    key: '중1',
-    heading: '중학 1학년 과정',
-    badge: '중 1',
-    summary:
-      '첫 내신 시험을 기준으로 학습 습관을 잡습니다. 교과서 본문 암기가 아니라 문장 구조 이해로 접근합니다.',
-    blocks: [
-      { label: '학습 목표', body: '학교 교과서 전 단원 구문 분석\n서술형 기본 문장 쓰기' },
-      { label: '주요 학습 내용', body: '중등 필수 문법 1회독\n교과서 본문 + 부교재 병행' },
-      { label: '수업 방식', body: '주 2회 · 1회 100분\n학교별 진도 맞춤 반 편성' },
-      { label: '관리 방법', body: '단원별 오답 노트 점검\n시험 4주 전 내신 집중 전환' },
-    ],
-  },
-  {
-    key: '중2',
-    heading: '중학 2학년 과정',
-    badge: '중 2',
-    summary:
-      '성적 격차가 가장 크게 벌어지는 학년입니다. 문법 2회독과 서술형 대비를 동시에 진행합니다.',
-    blocks: [
-      { label: '학습 목표', body: '내신 90점 이상 안정화\n서술형 감점 요인 제거' },
-      { label: '주요 학습 내용', body: '문법 심화 (분사 · to부정사 · 관계사)\n학교 기출 유형 분석' },
-      { label: '수업 방식', body: '주 2–3회 · 1회 100분\n서술형 첨삭 수업 포함' },
-      { label: '관리 방법', body: '주간 학습 리포트 발송\n1:1 오답 클리닉 (필요 시 추가 시간)' },
-    ],
-  },
-  {
-    key: '중3',
-    heading: '중학 3학년 과정',
-    badge: '중 3',
-    summary:
-      '고등 진학을 전제로 수업을 구성합니다. 내신을 유지하면서 고1 모의고사 형태의 독해로 넘어갑니다.',
-    blocks: [
-      { label: '학습 목표', body: '내신 유지 + 고1 과정 선행\n장문 독해 시간 관리' },
-      { label: '주요 학습 내용', body: '고등 구문 독해 입문\n어법 문제 유형 훈련' },
-      { label: '수업 방식', body: '주 3회 · 1회 110분\n내신 기간 / 선행 기간 분리 운영' },
-      { label: '관리 방법', body: '월 1회 모의 점검\n진학 상담 병행' },
-    ],
-  },
+/** 히어로 하단의 사실 정보 띠. 기존 운영 정보(대상 학년, 반 정원, 상담 비용)에서 가져왔다. */
+export const HERO_FACTS = [
+  { en: 'For', value: '초등 4학년 – 중학 3학년' },
+  { en: 'Class size', value: '한 반 최대 8명' },
+  { en: 'First step', value: '무료 상담 · 레벨 테스트' },
 ]
 
-export const STEPS = [
-  { no: '01', en: 'LEVEL TEST', title: '레벨 테스트', desc: '어휘·문법·독해를\n30분간 진단합니다.' },
-  { no: '02', en: 'GOAL SETTING', title: '학습 목표 설정', desc: '학년과 학교 기준에 맞춰\n목표를 정합니다.' },
-  { no: '03', en: 'CUSTOM CLASS', title: '맞춤 수업', desc: '진단 결과에 따라 교재와 진도를 조정합니다.' },
-  { no: '04', en: 'REVIEW', title: '복습·오답 관리', desc: '틀린 문제는 통과할 때까지 확인합니다.' },
-  { no: '05', en: 'WEEKLY REPORT', title: '주간 리포트', desc: '학습 결과를 학부모께 정리해 전달합니다.' },
-]
-
-export const TEACHERS = [
+export const VALUES = [
   {
-    role: '중등 내신 총괄',
-    name: '김ㅇㅇ 선생님',
-    field: '중등 내신 / 서술형 전문',
-    bio: '학교별 기출 분석과 서술형 첨삭을 담당합니다. 문장을 쓰는 순서부터 잡아주는 수업을 진행합니다.',
-    photo: teacher1,
-    photo2x: teacher1x2,
+    no: '01',
+    en: 'Strong Basics',
+    title: '기초부터 탄탄하게',
+    desc: '흔들리지 않는 영어의 기본기를 형성합니다.',
+    detail: '어휘와 문장 구조를 먼저 다지고, 다음 단계로 넘어갑니다.',
   },
+  {
+    no: '02',
+    en: 'Personal Pace',
+    title: '학생별 맞춤 지도',
+    desc: '학생의 수준과 학습 속도에 맞춰 지도합니다.',
+    detail: '진단 결과에 따라 교재와 진도를 조정합니다.',
+  },
+  {
+    no: '03',
+    en: 'Steady Growth',
+    title: '꾸준한 성장 관리',
+    desc: '학습 과정을 점검하고 부족한 부분을 보완합니다.',
+    detail: '오답과 과제 이행 상황을 매주 확인합니다.',
+  },
+] as const
+
+export type CurriculumItem = { title: string; desc: string }
+
+export const ELEMENTARY = {
+  en: 'Elementary',
+  label: '초등부',
+  grades: '초등 4–6학년',
+  heading: ['영어의 즐거움을 알고,', '기초를 완성하는 시간.'],
+  summary: '듣고 읽는 경험을 충분히 쌓으면서, 중학 영어로 넘어갈 기초 체력을 만듭니다.',
+  items: [
+    { title: '파닉스 및 기초 어휘', desc: '소리와 철자의 규칙을 점검하고 학년별 필수 어휘를 쌓습니다.' },
+    { title: '기초 문법 및 문장 구조', desc: '품사와 시제를 문장 안에서 익혀 해석 습관을 만듭니다.' },
+    { title: '리딩 및 리스닝', desc: '수준에 맞는 지문을 듣고 읽으며 내용을 요약합니다.' },
+    { title: '영어 표현 및 활용', desc: '배운 표현을 직접 말하고 써 보며 내 것으로 만듭니다.' },
+  ] satisfies CurriculumItem[],
+  schedule: '주 2–3회 · 1회 90분',
+  photo: elementaryPhoto,
+  photo2x: elementaryPhotoX2,
+}
+
+export const MIDDLE = {
+  en: 'Middle School',
+  label: '중등부',
+  grades: '중학 1–3학년',
+  heading: ['배운 영어를 실력으로,', '실력을 결과로.'],
+  summary: '재학 중인 학교의 출제 경향에 맞춰 내신을 준비하고, 고등 영어까지 이어지는 실력을 만듭니다.',
+  items: [
+    { title: '학교별 내신 대비', desc: '학교 기출 유형을 분석해 시험 4주 전부터 집중 대비합니다.' },
+    { title: '핵심 문법 및 독해', desc: '중등 필수 문법을 구문 독해와 함께 체계적으로 정리합니다.' },
+    { title: '서술형 및 수행평가', desc: '감점 요인을 첨삭으로 짚고, 문장을 쓰는 순서부터 잡습니다.' },
+    { title: '실전 문제 풀이 및 오답 관리', desc: '틀린 문제는 같은 유형을 다시 풀어 통과할 때까지 확인합니다.' },
+  ] satisfies CurriculumItem[],
+  schedule: '주 2–3회 · 1회 100분 내외',
+}
+
+export const SYSTEM_STEPS = [
+  {
+    no: '01',
+    en: 'Learn',
+    title: '개념 학습',
+    desc: '수업을 통해 새로운 개념과 영어 표현을 익힙니다.',
+  },
+  {
+    no: '02',
+    en: 'Review',
+    title: '반복 복습',
+    desc: '배운 내용을 반복하여 이해도를 높입니다.',
+  },
+  {
+    no: '03',
+    en: 'Test',
+    title: '학습 점검',
+    desc: '테스트를 통해 부족한 영역을 파악합니다.',
+  },
+  {
+    no: '04',
+    en: 'Feedback',
+    title: '맞춤 피드백',
+    desc: '결과를 바탕으로 다음 학습 방향을 설정합니다.',
+  },
+] as const
+
+export const LEAD_TEACHER = {
+  role: '중등 내신 총괄',
+  name: '김ㅇㅇ 선생님',
+  fields: ['중등 내신', '서술형 첨삭', '학교별 기출 분석'],
+  philosophy:
+    '영어를 잘하게 되는 방법은 학생마다 다릅니다. 먼저 이 학생이 어디에서 막히는지 이해하고, 그 지점부터 함께 풀어 갑니다.',
+  methods: [
+    '학교별 기출을 분석해 수업 자료에 반영합니다.',
+    '서술형은 문장을 쓰는 순서부터 첨삭으로 잡아 줍니다.',
+    '틀린 문제는 학생이 직접 설명할 수 있을 때까지 확인합니다.',
+  ],
+  photo: teacherLead,
+  photo2x: teacherLeadX2,
+}
+
+export const OTHER_TEACHERS = [
   {
     role: '문법 과정',
     name: '이ㅇㅇ 선생님',
-    field: '고등 진학 대비 / 문법 전문',
-    bio: '중3–고1 연계 구문 수업을 맡고 있습니다. 문법 용어를 학생의 언어로 다시 설명하는 데 집중합니다.',
+    field: '고등 진학 대비 · 문법',
     photo: teacher2,
     photo2x: teacher2x2,
   },
   {
     role: '초등 과정',
     name: '박ㅇㅇ 선생님',
-    field: '초등 고학년 / 어휘·독해',
-    bio: '중학 진입 전 어휘량과 읽기 습관을 만듭니다. 매 수업 단어 확인을 직접 진행합니다.',
+    field: '초등 고학년 · 어휘와 독해',
     photo: teacher3,
     photo2x: teacher3x2,
   },
 ]
 
-export const REVIEWS = [
-  {
-    tag: '중2 / 내신 대비',
-    body: '수업만 듣고 끝나는 게 아니라 매주 무엇을 틀렸는지 확인할 수 있어서 좋았어요. 아이가 자기 약점을 말로 설명하기 시작했습니다.',
-    author: '학부모 김○○',
+export const CLASSROOM = {
+  classroom: {
+    en: 'Our Classroom',
+    title: '강의실',
+    desc: '한 반 최대 8명. 선생님이 한 명 한 명의 답을 확인할 수 있는 규모입니다.',
+    photo: spaceClassroom,
+    photo2x: spaceClassroomX2,
+    alt: '책상과 의자가 정돈된 밝은 강의실과 화이트보드',
   },
-  {
-    tag: '초6 / 중등 준비',
-    body: '중학교 올라가기 전에 문법을 정리해주셔서 걱정이 줄었습니다. 단어 시험을 통과할 때까지 챙겨주시는 점이 마음에 들었어요.',
-    author: '학부모 이○○',
+  study: {
+    en: 'Focused Learning',
+    title: '자습실',
+    desc: '수업 전후 과제와 단어 재시험을 진행합니다.',
+    photo: spaceStudyRoom,
+    photo2x: spaceStudyRoomX2,
+    alt: '칸막이 책상이 줄지어 놓인 조용한 자습실',
   },
-  {
-    tag: '중3 / 서술형',
-    body: '서술형에서 계속 감점이 났는데, 어떤 부분에서 틀리는지 첨삭으로 알려주셔서 같은 실수가 줄었습니다.',
-    author: '학생 박○○',
+  consult: {
+    en: 'Personal Care',
+    title: '상담실',
+    desc: '진단 결과와 학습 방향을 차분히 설명하는 별도 공간입니다.',
+    photo: spaceConsultRoom,
+    photo2x: spaceConsultRoomX2,
+    alt: '창가에 책상과 의자 두 개가 놓인 상담실',
   },
-  {
-    tag: '중1 / 첫 시험',
-    body: '학교 기출 유형으로 미리 연습해서 첫 시험에서도 크게 당황하지 않았어요. 상담 때 설명이 구체적이었습니다.',
-    author: '학부모 정○○',
+  materials: {
+    en: 'Learning Materials',
+    title: '학습자료실',
+    desc: '학년별 교재와 학교별 기출 자료를 갖춰 두었습니다.',
+    photo: spaceMaterials,
+    photo2x: spaceMaterialsX2,
+    alt: '학년별 영어 교재와 워크북이 꽂힌 책장',
   },
-  {
-    tag: '중2 / 학습 습관',
-    body: '숙제를 안 해오면 그냥 넘어가지 않고 다시 확인해주십니다. 관리가 된다는 느낌이 있어서 계속 보내고 있어요.',
-    author: '학부모 최○○',
-  },
-]
-
-export const SPACES = [
-  { photo: spaceClassroom, photo2x: spaceClassroomX2, title: '강의실', desc: '한 반 최대 8명, 판서 중심 수업 공간' },
-  { photo: spaceStudyRoom, photo2x: spaceStudyRoomX2, title: '자습실', desc: '수업 전후 과제와 재시험을 진행' },
-  { photo: spaceConsultRoom, photo2x: spaceConsultRoomX2, title: '상담실', desc: '진단 결과를 설명하는 별도 공간' },
-  { photo: spaceMaterials, photo2x: spaceMaterialsX2, title: '학습 자료', desc: '학년별 교재와 학교별 기출 자료실' },
-]
+}
 
 export const FAQS = [
   {
@@ -280,11 +245,4 @@ export const GRADE_OPTIONS = [
   '중학 1학년',
   '중학 2학년',
   '중학 3학년',
-]
-
-export const TIME_OPTIONS = [
-  '평일 오후 (14–18시)',
-  '평일 저녁 (18–21시)',
-  '토요일 (10–17시)',
-  '시간 무관',
 ]

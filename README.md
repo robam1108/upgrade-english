@@ -3,6 +3,8 @@
 초·중등 영어학원을 위한 반응형 랜딩페이지입니다.
 학부모가 페이지에 들어와 **학원을 이해하고 → 신뢰하고 → 상담을 신청하기까지**의 흐름을 하나의 스크롤 안에 설계했습니다.
 
+**🔗 배포 페이지: https://upgrade-english-v2.vercel.app/**
+
 > 포트폴리오용 가상 브랜드입니다. 학원명·주소·연락처·강사 정보는 모두 실제가 아니며, 상담 폼은 실제로 전송되지 않는 데모입니다.
 
 <br>
@@ -14,7 +16,7 @@
 | 유형 | 교육 업종 랜딩페이지 (단일 페이지) |
 | 범위 | 기획 · UI 디자인 · 프론트엔드 개발 · 배포 (1인) |
 | 기술 | React 19, TypeScript, Vite, Tailwind CSS v4, Framer Motion |
-| 배포 | Vercel |
+| 배포 | [upgrade-english-v2.vercel.app](https://upgrade-english-v2.vercel.app/) (Vercel) |
 | 대응 | 모바일 / 태블릿 / 데스크톱 반응형 |
 
 <br>

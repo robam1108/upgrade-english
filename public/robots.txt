@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://upgrade-english.example.com/sitemap.xml
+Sitemap: https://upgrade-english-v2.vercel.app/sitemap.xml
